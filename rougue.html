@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>HTML 5 Rouguelike</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <style>
+#ctx {
+  position: relative;
+
+}
+
+
+	 #bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}</style>
+<script>
+var keys = {};
+window.addEventListener("keydown",
+    function(e){
+        keys[e.keyCode] = true;
+        switch(e.keyCode){
+            case 37: case 39: case 38:  case 40: // Arrow keys
+            case 32: e.preventDefault(); break; // Space
+            default: break; // do not block other keys
+        }
+    },
+false);
+window.addEventListener('keyup',
+    function(e){
+        keys[e.keyCode] = false;
+    },
+false);
+</script>
+<link href='https://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Dominik Yakoubek</a></h1>
+				<a href="#nav">Menu</a>
+			</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="generic.html">Bio</a></li>
+				<li><a href="compsci.html">Project List</a></li>
+				<li><a href="calc.html">Calc Programs</a></li>
+				<li><a href="bam.html">BAM</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2>HTML Rouguelike Game</h2>
+						<p>Press Space to start.</p>
+					</header>
+<center>
+
+
+  <div id="ctx">
+
+  	  <canvas id="canvas"></canvas><br>
+  	  <canvas id="myCanvas"height="250" width="988"></canvas></td>
+
+
+
+  	 </div>
+<script language="javascript" src="spawn.js"></script>
+<script language="javascript" src="update.js"></script>
+<script language="javascript" src="battle.js"></script>
+<script language="javascript" src="script.js"></script>
+
+
+					<p>This is a HTML 5 rouguelike RPG, it's a very long way from being complete and is in a very bare bones stage. While I made it without any framework I am thinking about switching to Enchant.js to make the transition to mobile easier. I plan on making a demo for this 3x3 map but hopefully will expand to a 9x9 to 16x16 map. </p>
+
+			This is incomplete so there is no download avaivlable.
+
+</center>
+				</div>
+			</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://www.facebook.com/dominikyakoubekcode/" class="icon fa-facebook">
+						<span class="label">Facebook</span>
+					</a></li>
+					<li><a href="https://twitter.com/The_K_Legacy" class="icon fa-twitter">
+						<span class="label">Twitter</span>
+					</a></li>
+						<li><a href="https://github.com/Kingdiepie" class="icon fa-github"><span class="label">Github</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li>
+					<li>Images: <a href="index.html">DOMINIK YAKOUBEK</a>.</li>
+					<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+				</ul>
+			</div>
+		</footer>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

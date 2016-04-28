@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Generic - Retrospect by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Dominik Yakoubek</a></h1>
+				<a href="#nav">Menu</a>
+			</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="generic.html">Bio</a></li>
+				<li><a href="compsci.html">Project List</a></li>
+				<li><a href="calc.html">Calc Programs</a></li>
+				<li><a href="bam.html">BAM</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2>HTML Game Creation</h2>
+						<p>A intro to makeing a html canvas.</p>
+					</header>
+          <h4> Here's how you make a HTML 5 game without any frame work: We'll start with the basic components
+          then work on makeing a tron game. Basic HTML knowlage is required and basic JS/programming knowlage is recommended.
+          <br><br>
+          the HTML: </h4>
+
+          <pre><code><xmp><head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+  <canvas id="canvas">
+  <script language="javascript" src="main.js"></script>
+</body></xmp></code></pre>
+
+
+          <p>Nothing fancy just a link to Jquery(In case you need it later), your JS, and your canvas. If you're unfamiliar with HTML or need a refresher try <a href="http://www.w3schools.com/html/html_intro.asp">http://www.w3schools.com/html</a></p>
+
+          <pre><code><xmp>var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 800;
+canvas.height = 600;
+var i = 0;</xmp></code></pre>
+
+          <p>
+          This should go at the beginning of your JS file, it gives you control of your canvas, you can now set the high and width and draw
+          on your canvas with ctx.fillwhatevermethod()
+          </p>
+
+               <pre><code><xmp>window.onload = function() {
+    var main = function() {
+      var now = Date.now();
+      var delta = now - then;
+      update(delta / 2000);
+      render();
+      then = now;
+      requestAnimationFrame(main);
+    };
+    var w = window;
+    requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+    var then = Date.now();
+    main();
+  };</xmp></code></pre>
+
+
+          <p>
+          Next is your basic game loop, update is where you will change variables and there values
+          very frame and render is where you will draw everything based of those varibles. You can also
+          change your game speed by increasing or decreasing FPS. This should always be your last black of code.
+          </p>
+
+          <pre><code><xmp>var rectX = 200;
+var rectY = 200;
+var rectSpeed = 128;
+ctx.font = "30px Arial";</xmp></code></pre>
+
+          <p>
+          We're gonna add these global variables next.
+          </p>
+
+<pre><code><xmp>var update = function(m) {
+  i++;
+};
+var render = function() {
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "#000000";
+  ctx.fillText("Number of frames ago you loaded me: " + i,50,50);
+  ctx.fillRect(300,300,rectX,rectY);
+};</xmp></code></pre>
+
+          <p>
+          The above code is your render and update methods. This is the code that is run every frame. Things should now get draw on your canvas. Don't worry if it looks bad, it should. There should be a number on your screen that counts up every frame.
+          </p>
+          <p>We new technically have a game, if your familiar with Javascript you can probably make your own after looking at the all the <a href="http://www.w3schools.com/tags/ref_canvas.asp">canvas fill methods</a>.</p>
+
+          <p>If your still not sure on how to make a real game look at the code for my Tron HTML 5 Game (Not the Java one).</p>
+          <h4><u>Final Product</u></h4>
+          <br>
+          <br>
+          <h4>HTML:</h4>
+            <pre><code><xmp>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+  <canvas id="canvas">
+  <script language="javascript" src="main.js"></script>
+</body></xmp></code></pre>
+<br>
+<h4>JavaScript:</h4>
+  <pre><code><xmp>
+    var canvas = document.getElementById("canvas");
+          var ctx = canvas.getContext("2d");
+          canvas.width = 800;
+          canvas.height = 600;
+          var i = 0;
+
+          var rectX = 200;
+          var rectY = 200;
+          var rectSpeed = 128;
+          ctx.font = "30px Arial";
+
+
+          var update = function(m) {
+            i++;
+          };
+          var render = function() {
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = "#000000";
+            ctx.fillText("Number of frames ago you loaded me: " + i,50,50);
+            ctx.fillRect(300,300,rectX,rectY);
+          };
+
+window.onload = function() {
+              var main = function() {
+                  var now = Date.now();
+                  var delta = now - then;
+                  update(delta / 2000);
+                      render();
+                      then = now;
+                  requestAnimationFrame(main);
+              };
+              var w = window;
+              requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+              var then = Date.now();
+              main();
+          };</xmp></code></pre>
+
+        </div>
+			</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://www.facebook.com/dominikyakoubekcode/" class="icon fa-facebook">
+						<span class="label">Facebook</span>
+					</a></li>
+					<li><a href="https://twitter.com/The_K_Legacy" class="icon fa-twitter">
+						<span class="label">Twitter</span>
+					</a></li>
+						<li><a href="https://github.com/Kingdiepie" class="icon fa-github"><span class="label">Github</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li>
+					<li>Images: <a href="index.html">DOMINIK YAKOUBEK</a>.</li>
+					<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
