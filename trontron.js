@@ -1,7 +1,7 @@
 //make canvas
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 980;
+canvas.width = 700;
 canvas.height = 700;
 var on = false;
 ctx.font = "30px Arial";
@@ -18,7 +18,7 @@ window.addEventListener("keydown", function(e) {
 /////////////////////Players//////////////
 var blue = {
     speed: 6, // movement in pixels per second
-    x: canvas.width / 2 - 400,
+    x: canvas.width / 2 - 300,
     y: canvas.height / 2,
     win: false,
     key: 3,
@@ -26,7 +26,7 @@ var blue = {
 };
 var red = {
     speed: 6, // movement in pixels per second
-    x: canvas.width / 2 + 400,
+    x: canvas.width / 2 + 300,
     y: canvas.height / 2,
     win: false,
     key: 3,
@@ -188,12 +188,12 @@ var update = function(m) {
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "rgb(256, 0, 0)";
-        ctx.fillText("Red: " + red.score,900,40);
+        ctx.fillText("Red: " + red.score,canvas.width-100,40);
         ctx.fillStyle = "rgb(0, 0, 256)";
         ctx.fillText("Blue: " + blue.score,60,40);
-        red.x = canvas.width / 2 + 400;
+        red.x = canvas.width / 2 + 300;
         red.y = canvas.height / 2;
-        blue.x = canvas.width / 2 - 400;
+        blue.x = canvas.width / 2 - 300;
         blue.y = canvas.height / 2;
         end = false;
         blue.key = 3;
