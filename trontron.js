@@ -1,71 +1,4 @@
-<!DOCTYPE HTML>
-<!--
-	Retrospect by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-	<head>
-		<title>Tron HTML</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	</head>
-	<body>
-
-		<!-- Header -->
-			<header id="header">
-				<h1><a href="index.html">Dominik Yakoubek</a></h1>
-				<a href="#nav">Menu</a>
-			</header>
-
-		<!-- Nav -->
-		<nav id="nav">
-			<ul class="links">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="generic.html">Bio</a></li>
-				<li><a href="compsci.html">Project List</a></li>
-				<li><a href="calc.html">Calc Programs</a></li>
-				<li><a href="bam.html">BAM</a></li>
-		    <li><a href="arcade.html">HTML5 Arcade</a></li>
-			</ul>
-		</nav>
-
-		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="container">
-
-					<header class="major special">
-						<h2>Tron HTML 5 Game</h2>
-						<p>Tron game I made in html, uses a lot of the things all HTML 5 games use.</p>
-					</header>
-
-					<center>
-						<table><tr><td>
-						    <canvas id="canvas"></td></tr><tr><td>
-						      <script language="javascript" src="trontron.js" /></script>
-						    <input type="button" value="Start" onclick="start();"></td></tr></table>
-					</center>
-
-<h4>HTML:</h4>
-
-<pre><code><xmp><head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-</head>
-<body>
-  <table><tr><td>
-  <canvas id="canvas"></td></tr><tr><td>
-  <script language="javascript" src="main.js" /></script>
-  <input type="button" value="Start" onclick="start();"></td></tr></table>
-</body></xmp></code></pre>
-
-<h4>JavaScript:</h4>
-
-<pre><code><xmp>//make canvas
+//make canvas
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 1080;
@@ -318,41 +251,6 @@ window.onload = function() {
     var w = window;
     requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
     var then = Date.now();
-   main();
+    main();
 
-};</xmp></code></pre>
-
-
-
-				</div>
-			</section>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<div class="inner">
-				<ul class="icons">
-					<li><a href="https://www.facebook.com/dominikyakoubekcode/" class="icon fa-facebook">
-						<span class="label">Facebook</span>
-					</a></li>
-					<li><a href="https://twitter.com/The_K_Legacy" class="icon fa-twitter">
-						<span class="label">Twitter</span>
-					</a></li>
-						<li><a href="https://github.com/Kingdiepie" class="icon fa-github"><span class="label">Github</span></a></li>
-				</ul>
-				<ul class="copyright">
-					<li>&copy; Untitled.</li>
-					<li>Images: <a href="index.html">DOMINIK YAKOUBEK</a>.</li>
-					<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
-				</ul>
-			</div>
-		</footer>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+};
