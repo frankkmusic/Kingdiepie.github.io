@@ -1,7 +1,7 @@
 //make canvas
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 700;
+canvas.width = 800;
 canvas.height = 700;
 var on = false;
 ctx.font = "30px Arial";
