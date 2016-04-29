@@ -219,13 +219,13 @@ var render = function() {
     ctx.fillStyle = "rgb(256, 0, 0)";
     ctx.fillRect(red.x, red.y, 8, 8);
     if (red.win === true){
-      ctx.fillText("Red Wins!", 450,50);
+      ctx.fillText("Red Wins!", 350,50);
       end = true;
     }
     ctx.fillStyle = "rgb(0, 0, 256)";
     ctx.fillRect(blue.x, blue.y, 8, 8);
      if (blue.win === true){
-      ctx.fillText("Blue Wins!", 450, canvas.height-80);
+      ctx.fillText("Blue Wins!", 350, canvas.height-100);
       end = true;
     }
 };
