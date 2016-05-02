@@ -93,7 +93,7 @@ var check = function(player, keyPressed) {
 //Update Method
 var update = function(m) {
     //up
-    if (38 in keysDown || red.key === 1) {
+    if (38 in keysDown || red.key === 1 && red.key != 2) {
         red.y -= red.speed;
         if (check(red, "up") === false) {
             blue.win = true;
@@ -104,7 +104,7 @@ var update = function(m) {
         red.key = 1;
     }
     //down
-    if (40 in keysDown || red.key === 2) {
+    if (40 in keysDown || red.key === 2 && red.key != 1) {
         red.y += red.speed;
         if (check(red, "down") === false) {
             blue.win = true;
@@ -115,7 +115,7 @@ var update = function(m) {
         red.key = 2;
     }
     //left
-    if (37 in keysDown || red.key === 3) {
+    if (37 in keysDown || red.key === 3 && red.key != 4) {
         red.x -= red.speed;
         if (check(red, "left") === false) {
             if (end === false){
@@ -126,7 +126,7 @@ var update = function(m) {
         red.key = 3;
     }
     //right
-    if (39 in keysDown || red.key === 4) {
+    if (39 in keysDown || red.key === 4 && red.key != 3) {
         red.x += red.speed;
         if (check(red, "right") === false) {
             if (end === false){
