@@ -69,8 +69,8 @@
 <pre><code><xmp>//make canvas
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 1080;
-canvas.height = 800;
+canvas.width = 800;
+canvas.height = 700;
 var on = false;
 ctx.font = "30px Arial";
 var end = false;
@@ -86,7 +86,7 @@ window.addEventListener("keydown", function(e) {
 /////////////////////Players//////////////
 var blue = {
     speed: 6, // movement in pixels per second
-    x: canvas.width / 2 - 400,
+    x: canvas.width / 2 - 300,
     y: canvas.height / 2,
     win: false,
     key: 3,
@@ -94,7 +94,7 @@ var blue = {
 };
 var red = {
     speed: 6, // movement in pixels per second
-    x: canvas.width / 2 + 400,
+    x: canvas.width / 2 + 300,
     y: canvas.height / 2,
     win: false,
     key: 3,
@@ -161,7 +161,7 @@ var check = function(player, keyPressed) {
 //Update Method
 var update = function(m) {
     //up
-    if (38 in keysDown || red.key === 1) {
+    if ((38 in keysDown || red.key === 1) && red.key != 2) {
         red.y -= red.speed;
         if (check(red, "up") === false) {
             blue.win = true;
@@ -172,7 +172,7 @@ var update = function(m) {
         red.key = 1;
     }
     //down
-    if (40 in keysDown || red.key === 2) {
+    if ((40 in keysDown || red.key === 2) && red.key != 1) {
         red.y += red.speed;
         if (check(red, "down") === false) {
             blue.win = true;
@@ -183,7 +183,7 @@ var update = function(m) {
         red.key = 2;
     }
     //left
-    if (37 in keysDown || red.key === 3) {
+    if ((37 in keysDown || red.key === 3) && red.key != 4) {
         red.x -= red.speed;
         if (check(red, "left") === false) {
             if (end === false){
@@ -194,7 +194,7 @@ var update = function(m) {
         red.key = 3;
     }
     //right
-    if (39 in keysDown || red.key === 4) {
+    if ((39 in keysDown || red.key === 4) && red.key != 3) {
         red.x += red.speed;
         if (check(red, "right") === false) {
             if (end === false){
@@ -206,7 +206,7 @@ var update = function(m) {
 
     }
     // W
-    if (87 in keysDown || blue.key === 1) {
+    if ((87 in keysDown || blue.key === 1) && blue.key != 4) {
         blue.y -= blue.speed;
         if (check(blue, "up") === false) {
             red.win = true;
@@ -217,7 +217,7 @@ var update = function(m) {
         blue.key = 1;
     }
     // A
-    if (65 in keysDown || blue.key === 2) {
+    if ((65 in keysDown || blue.key === 2)&& blue.key != 3) {
         blue.x -= blue.speed;
         if (check(blue, "left") === false) {
             red.win = true;
@@ -228,7 +228,7 @@ var update = function(m) {
         blue.key = 2;
     }
     //D
-    if (68 in keysDown || blue.key === 3) {
+    if ((68 in keysDown || blue.key === 3) && blue.key != 2) {
         blue.x += blue.speed;
         if (check(blue, "right") === false) {
             if (end === false){
@@ -239,7 +239,7 @@ var update = function(m) {
         blue.key = 3;
     }
     // S
-    if (83 in keysDown || blue.key === 4) {
+    if ((83 in keysDown || blue.key === 4) && blue.key != 1) {
         blue.y += blue.speed;
         if (check(blue, "down") === false) {
             if (end === false){
@@ -256,12 +256,12 @@ var update = function(m) {
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "rgb(256, 0, 0)";
-        ctx.fillText("Red: " + red.score,900,40);
+        ctx.fillText("Red: " + red.score,canvas.width-150,40);
         ctx.fillStyle = "rgb(0, 0, 256)";
-        ctx.fillText("Blue: " + blue.score,60,40);
-        red.x = canvas.width / 2 + 400;
+        ctx.fillText("Blue: " + blue.score,80,40);
+        red.x = canvas.width / 2 + 300;
         red.y = canvas.height / 2;
-        blue.x = canvas.width / 2 - 400;
+        blue.x = canvas.width / 2 - 300;
         blue.y = canvas.height / 2;
         end = false;
         blue.key = 3;
@@ -287,13 +287,13 @@ var render = function() {
     ctx.fillStyle = "rgb(256, 0, 0)";
     ctx.fillRect(red.x, red.y, 8, 8);
     if (red.win === true){
-      ctx.fillText("Red Wins!", 450,50);
+      ctx.fillText("Red Wins!", 335,50);
       end = true;
     }
     ctx.fillStyle = "rgb(0, 0, 256)";
     ctx.fillRect(blue.x, blue.y, 8, 8);
      if (blue.win === true){
-      ctx.fillText("Blue Wins!", 450, canvas.height-80);
+      ctx.fillText("Blue Wins!", 325, canvas.height-80);
       end = true;
     }
 };
@@ -319,7 +319,7 @@ window.onload = function() {
     var w = window;
     requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
     var then = Date.now();
-   main();
+    main();
 
 };</xmp></code></pre>
 
