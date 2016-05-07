@@ -1,5 +1,11 @@
+var start = function(){
+
+
+
 var canvas = document.getElementById("the-game");
 var context = canvas.getContext("2d");
+
+
 
 window.addEventListener("keydown", function(e) {
     // space and arrow keys
@@ -197,6 +203,7 @@ addEventListener("keydown", function (e) {
    }
 }, false);
 
+
 var requestAnimationFrame =  window.requestAnimationFrame ||
      window.webkitRequestAnimationFrame ||
      window.mozRequestAnimationFrame;
@@ -216,3 +223,4 @@ function loop() {
 };
 
 requestAnimationFrame(loop);
+};
