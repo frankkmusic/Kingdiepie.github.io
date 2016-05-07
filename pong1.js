@@ -30,8 +30,8 @@ function init() {
 			multiplier: 0.2,
 			maxspeed: 5
 		},
-		playerHeight : 80,
-		playerWidth : 6,
+		playerHeight : 120,
+		playerWidth : 9,
 		pause : false,
 		sound: true
 	};
