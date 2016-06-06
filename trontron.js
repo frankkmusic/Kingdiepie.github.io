@@ -19,7 +19,7 @@ window.addEventListener("keydown", function(e) {
 var blue = {
     speed: 6, // movement in pixels per second
     x: canvas.width / 2 - 300,
-    y: canvas.height / 2,
+    y: canvas.height / 2 - 64,
     win: false,
     key: 3,
     score: 0
@@ -27,7 +27,7 @@ var blue = {
 var red = {
     speed: 6, // movement in pixels per second
     x: canvas.width / 2 + 300,
-    y: canvas.height / 2,
+    y: canvas.height / 2 - 64,
     win: false,
     key: 3,
     score: 0
@@ -182,9 +182,10 @@ var update = function(m) {
         blue.key = 4;
     }
     if (82 in keysDown && (red.win === true || blue.win === true)) {
-        console.log("test");
         blue.win = false;
         red.win = false;
+        ctx.fillStyle = "rgb(255, 255, 0)";
+        ctx.fillRect(0,0,canvas.width,128);
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "rgb(256, 0, 0)";
@@ -192,14 +193,14 @@ var update = function(m) {
         ctx.fillStyle = "rgb(0, 0, 256)";
         ctx.fillText("Blue: " + blue.score,80,40);
         red.x = canvas.width / 2 + 300;
-        red.y = canvas.height / 2;
+        red.y = canvas.height / 2-64;
         blue.x = canvas.width / 2 - 300;
-        blue.y = canvas.height / 2;
+        blue.y = canvas.height / 2-64;
         end = false;
         blue.key = 3;
         red.key =3;
     }
-    if (red.x < 0 || red.y < 0 || red.x + 8 > canvas.width || red.y + 8 > canvas.height) {
+    if (red.x < 0 || red.y < 0 || red.x + 8 > canvas.width || red.y + 8 > canvas.height-128) {
         blue.win = true;
         if (end === false){
         blue.score++;
