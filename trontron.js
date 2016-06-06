@@ -188,7 +188,7 @@ var update = function(m) {
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "rgb(255, 255, 0)";
-        ctx.fillRect(0,0,canvas.width,128);
+        ctx.fillRect(0,0,canvas.width,72);
         ctx.fillStyle = "rgb(256, 0, 0)";
         ctx.fillText("Red: " + red.score,canvas.width-150,40);
         ctx.fillStyle = "rgb(0, 0, 256)";
@@ -201,13 +201,13 @@ var update = function(m) {
         blue.key = 3;
         red.key =3;
     }
-    if (red.x < 0 || red.y < 0 || red.x + 8 > canvas.width || red.y + 8 > canvas.height-128) {
+    if (red.x < 0 || red.y < 0 || red.x + 8 > canvas.width || red.y + 8 > canvas.height-72) {
         blue.win = true;
         if (end === false){
         blue.score++;
         }
     }
-    if (blue.x < 0 || blue.y < 0 || blue.x + 8 > canvas.width || blue.y + 8 > canvas.height) {
+    if (blue.x < 0 || blue.y < 0 || blue.x + 8 > canvas.width || blue.y + 8 > canvas.height-72) {
         red.win = true;
         if (end === false){
         red.score++;
@@ -221,7 +221,10 @@ var render = function() {
 
         ctx.fillStyle = "rgb(255, 255, 0)";
         ctx.fillRect(0,0,canvas.width,128);
-        
+        ctx.fillStyle = "rgb(256, 0, 0)";
+        ctx.fillText("Red: " + red.score,canvas.width-150,40);
+        ctx.fillStyle = "rgb(0, 0, 256)";
+        ctx.fillText("Blue: " + blue.score,80,40);
     ctx.fillStyle = "rgb(256, 0, 0)";
     ctx.fillRect(red.x, red.y, 8, 8);
     if (red.win === true){
