@@ -201,13 +201,13 @@ var update = function(m) {
         blue.key = 3;
         red.key =3;
     }
-    if (red.x < 0 || red.y < 0 || red.x + 8 > canvas.width || red.y + 8 > canvas.height-72) {
+    if (red.x < 0 || red.y < 0 || red.x + 8 > canvas.width || red.y + 80 > canvas.height) {
         blue.win = true;
         if (end === false){
         blue.score++;
         }
     }
-    if (blue.x < 0 || blue.y < 0 || blue.x + 8 > canvas.width || blue.y + 8 > canvas.height-72) {
+    if (blue.x < 0 || blue.y < 0 || blue.x + 8 > canvas.width || blue.y + 80 > canvas.height) {
         red.win = true;
         if (end === false){
         red.score++;
