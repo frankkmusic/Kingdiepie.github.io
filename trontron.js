@@ -188,7 +188,7 @@ var update = function(m) {
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "rgb(255, 255, 0)";
-        ctx.fillRect(0,0,canvas.width,72);
+        ctx.fillRect(0,0,canvas.width,64);
         ctx.fillStyle = "rgb(256, 0, 0)";
         ctx.fillText("Red: " + red.score,canvas.width-150,40);
         ctx.fillStyle = "rgb(0, 0, 256)";
@@ -220,7 +220,7 @@ var update = function(m) {
 var render = function() {
 
         ctx.fillStyle = "rgb(255, 255, 0)";
-        ctx.fillRect(0,0,canvas.width,128);
+        ctx.fillRect(0,0,canvas.width,64);
         ctx.fillStyle = "rgb(256, 0, 0)";
         ctx.fillText("Red: " + red.score,canvas.width-150,40);
         ctx.fillStyle = "rgb(0, 0, 256)";
