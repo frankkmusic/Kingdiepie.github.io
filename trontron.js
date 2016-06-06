@@ -184,10 +184,11 @@ var update = function(m) {
     if (82 in keysDown && (red.win === true || blue.win === true)) {
         blue.win = false;
         red.win = false;
-        ctx.fillStyle = "rgb(255, 255, 0)";
-        ctx.fillRect(0,0,canvas.width,128);
+        
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgb(255, 255, 0)";
+        ctx.fillRect(0,0,canvas.width,128);
         ctx.fillStyle = "rgb(256, 0, 0)";
         ctx.fillText("Red: " + red.score,canvas.width-150,40);
         ctx.fillStyle = "rgb(0, 0, 256)";
@@ -217,6 +218,10 @@ var update = function(m) {
 
 //renders canvas elements every frame
 var render = function() {
+
+        ctx.fillStyle = "rgb(255, 255, 0)";
+        ctx.fillRect(0,0,canvas.width,128);
+        
     ctx.fillStyle = "rgb(256, 0, 0)";
     ctx.fillRect(red.x, red.y, 8, 8);
     if (red.win === true){
