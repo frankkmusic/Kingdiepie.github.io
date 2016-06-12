@@ -1,0 +1,200 @@
+#white {
+  color: white;
+}
+
+#canvas {
+  position: relative;
+  zindex: 2;
+}
+	 #bg {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+#clickMe
+{
+  position: absolute;
+  top: 0px;
+  left: 990px;
+  zindex: 1;
+  width: 128px;
+  height: 64px;
+}
+#left
+{
+
+  left: 1000px;
+  position: absolute;
+  top: 128px;
+  zindex: 2;
+
+}
+#right
+{
+  left: 1256px;
+  position: absolute;
+  top: 128px;
+  zindex: 2;
+
+}
+#down
+{
+  left: 1128px;
+  position: absolute;
+  top: 192px;
+  zindex: 2;
+
+}
+#up
+{
+  left: 1128px;
+  position: absolute;
+  top: 64px;
+  zindex: 2;
+
+}
+#ls{
+  left: 1022px;
+  position: absolute;
+  top: 128px;
+  color: white;
+  font-size: 128px;
+  pointer-events: none;
+}
+#rs{
+  left: 1288px;
+  position: absolute;
+  top: 128px;
+  color: white;
+  font-size: 128px;
+  pointer-events: none;
+}
+#ds{
+  left: 1150px;
+  position: absolute;
+  top: 196px;
+  color: white;
+  font-size: 128px;
+  pointer-events: none;
+}
+#us{
+  left: 1150px;
+  position: absolute;
+  top: 66px;
+  color: white;
+  font-size: 128px;
+  pointer-events: none;
+}
+#container
+{
+  height: 1238px;
+  position: relative;
+  width: 730px;
+}
+
+
+
+.myButton2 {
+	-moz-box-shadow:inset 0px 1px 0px 0px #a6827e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a6827e;
+	box-shadow:inset 0px 1px 0px 0px #a6827e;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
+	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-o-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-ms-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d5d3b', endColorstr='#634b30',GradientType=0);
+	background-color:#7d5d3b;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #54381e;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	padding:6px 6px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #4d3534;
+	height: 128px;
+	width: 128px;
+}
+.myButton2:active {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
+	background:-moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:-webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:-o-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:-ms-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:linear-gradient(to bottom, #634b30 5%, #7d5d3b 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#634b30', endColorstr='#7d5d3b',GradientType=0);
+	background-color:#634b30;
+}
+#q
+{
+  width: 128px;
+  height: 128px;
+  left: 100px;
+  position: absolute;
+  top: 612px;
+  zindex: 2;
+}
+#one
+{
+
+  left: 230px;
+  position: absolute;
+  top: 612px;
+  zindex: 2;
+  height: 128px;
+  width: 128px;
+}
+#two
+{
+  left: 360px;
+  position: absolute;
+  top: 612px;
+  zindex: 2;
+  height: 128px;
+  width: 128px;
+}
+#three
+{
+  left: 490px;
+  position: absolute;
+  top: 612px;
+  zindex: 2;
+  height: 128px;
+  width: 128px;
+}
+#four
+{
+  left: 620px;
+  position: absolute;
+  top: 612px;
+  zindex: 2;
+  height: 128px;
+  width: 128px;
+}
+#StatScreen
+{
+  left: 750px;
+  position: absolute;
+  top: 612px;
+  zindex: 2;
+  height: 128px;
+  width: 128px;
+}
