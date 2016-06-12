@@ -1,8 +1,4 @@
 var subButton = document.getElementById('subButton');
-var finalGPA = 0;
-var finalWGPA = 0;
-var totalWGrade = 0;
-var totalGrade = 0;
 subButton.addEventListener('click', getUserName, false); 
 subButton2.addEventListener('click', getPercentNeeded, false); 
 
@@ -19,6 +15,10 @@ var getPoints = function(g){
 };
 
 function getUserName() {
+var finalGPA = 0;
+var finalWGPA = 0;
+var totalWGrade = 0;
+var totalGrade = 0;
 var gpan = document.getElementById('gpan').value;
 var gpah = document.getElementById('gpah').value;
 var gpaap = document.getElementById('gpaap').value;
