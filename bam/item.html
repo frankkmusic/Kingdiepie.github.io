@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/1.3.2/jquery.floatThead.js"></script>
+<script src="sorttable.js"></script>
+
+
+<style>
+input {
+    width: 256px;
+	height: 32px;
+	font-size: 32px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 2px;
+    margin-right: px;
+	border: 2px solid #3086C2;
+    border-radius: 4px;
+}
+h3 { 
+    display: block;
+    font-size: 32px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 2px;
+    margin-right: px;
+    font-weight: bold;
+	color: #3086C2;
+}
+
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+	
+	
+}
+
+table { 
+color: #333;
+font-family: Helvetica, Arial, sans-serif; 
+border-collapse: 
+collapse; border-spacing: 0; 
+}
+
+td, th { 
+border: 1px solid transparent; /* No more visible border */
+height: 30px; 
+transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {
+background: #3086C2;  /* Darken header a bit */
+font-weight: bold;
+color: white;
+}
+
+td {
+background: #000000;
+text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */ 
+tr:nth-child(even) td { background: #EBEBF7; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+tr td:hover { background: #3086C2; color: #FFF; } /* Hover cell effect! */
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+}
+
+
+body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 10%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: 	#3086C2;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #DFDFDF;
+    color: #3086C2;
+	font-weight: bold;
+	
+}
+
+a:visited { color: #000000; text-decoration: none}
+a:link { color: #000000; text-decoration: none}
+a:hover { color: white; text-decoration: none}
+
+</style>
+</head>
+<body>
+<ul>
+<font size="4%">
+  <li><a href="http://projectbam.proboards.com/">Home</a></li>
+  <li><a href="index.html">Pok&eacutemon</a></li>
+  <li><a href="moves.html">Moves</a></li>
+  <li><a class="active" href="item.html">Items</a></li>
+  <li><a href="abilities.html">Abilities</a></li>
+  <li><a href="chart.html">Type Chart</a></li>
+  <li><a class="back-to-top" style="vertical-align: bottom;" href="#" >Back to Top</a></li>	
+  </font>
+</ul>
+
+<div style="margin-left:10%;padding:2px 16px;height:1000px;">
+<center> 
+</br></br>
+<h3>Item Search: <input height="32" width="128" type="text" id="search" placeholder=""></h3>
+ <table class="sortable"  cellpadding="2" border="2px" id="table"><tr><th style="width:150px">Item</th> <th style="width:550px">Effect</th></tr>
+<tr><td>Air Balloon <img src="http://serebii.net/itemdex/sprites/airballoon.png"></td><td>Holder is immune to Ground-type attacks. Pops when holder is hit.</td></tr>
+<tr><td>Apicot Berry <img src="http://www.serebii.net/itemdex/sprites/apicotberry.png"> </td><td>Raises holder's Sp. Def by 1 stage when at 1/4 max HP or less. Single use.</td></tr>
+<tr><td>Babiri Berry<img src="http://www.serebii.net/itemdex/sprites/babiriberry.png"> </td><td>Halves damage taken from a supereffective Steel-type attack. Single use.</td></tr>
+<tr><td>Black Belt<img src="http://cdn.bulbagarden.net/upload/8/88/Bag_Black_Belt_Sprite.png"> </td><td>Holder's Fighting-type attacks have 1.2x power.</td></tr>
+<tr><td>Black Glasses<img src="http://cdn.bulbagarden.net/upload/3/3f/Bag_Black_Glasses_Sprite.png"> </td><td>Holder's Dark-type attacks have 1.2x power.</td></tr>
+<tr><td>Black Sludge<img src="http://cdn.bulbagarden.net/upload/4/41/Bag_Black_Sludge_Sprite.png"> </td><td>Each turn, if holder is a Poison type, restores 1/16 max HP; loses 1/8 if not.</td></tr>
+<tr><td>Charcoal<img src="http://cdn.bulbagarden.net/upload/b/b5/Bag_Charcoal_Sprite.png "> </td><td>Holder's Fire-type attacks have 1.2x power.</td></tr>
+<tr><td>Charti Berry<img src="http://www.serebii.net/itemdex/sprites/chartiberry.png "> </td><td>Halves damage taken from a supereffective Rock-type attack. Single use.</td></tr>
+<tr><td>Chesto Berry<img src=" http://pokeballinsider.com/images/rubysapphire/berry02.png"> </td><td>Holder wakes up if it is asleep. Single use.</td></tr>
+<tr><td>Chilan Berry<img src="http://www.serebii.net/itemdex/sprites/chilanberry.png "> </td><td>Halves damage taken from a Normal-type attack. Single use.</td></tr>
+<tr><td>Chople Berry<img src="http://www.serebii.net/itemdex/sprites/chopleberry.png "> </td><td>Halves damage taken from a supereffective Fighting-type attack. Single use.</td></tr>
+<tr><td>Coba Berry<img src="http://www.serebii.net/itemdex/sprites/cobaberry.png "> </td><td>Halves damage taken from a supereffective Flying-type attack. Single use.</td></tr>
+<tr><td>Colbur Berry<img src="http://www.serebii.net/itemdex/sprites/colburberry.png "> </td><td>Halves damage taken from a supereffective Dark-type attack. Single use.</td></tr>
+<tr><td>Custap Berry<img src="http://www.serebii.net/itemdex/sprites/custapberry.png "> </td><td> Holder moves first in its priority bracket when at 1/4 max HP or less. Single use</td></tr>
+<tr><td>Dragon Fang <img src=" http://cdn.bulbagarden.net/upload/e/ea/Bag_Dragon_Fang_Sprite.png"> </td><td>Holder's Dragon-type attacks have 1.2x power.</td></tr>
+<tr><td>Ganlon Berry <img src="http://www.serebii.net/itemdex/sprites/ganlonberry.png "> </td><td>Raises holder's Defense by 1 stage when at 1/4 max HP or less. Single use.</td></tr>
+<tr><td>Haban Berry <img src="http://www.serebii.net/itemdex/sprites/habanberry.png "> </td><td>Halves damage taken from a supereffective Dragon-type attack. Single use.</td></tr>
+<tr><td> Hard Stone<img src="http://cdn.bulbagarden.net/upload/8/82/Bag_Hard_Stone_Sprite.png "> </td><td>Holder's Rock-type attacks have 1.2x power.</td></tr>
+<tr><td>Kasip Berry <img src="http://www.serebii.net/itemdex/sprites/kasibberry.png "> </td><td>Halves damage taken from a supereffective Ghost-type attack. Single use.</td></tr>
+<tr><td>Kebia Berry <img src="http://cdn.bulbagarden.net/upload/4/4e/Bag_Kebia_Berry_Sprite.png "> </td><td>Kebia Berry</td></tr>
+<tr><td> Kee Berry<img src="http://www.serebii.net/itemdex/sprites/keeberry.png "> </td><td>Raises holder's Defense by 1 stage after it is hit by a physical attack. Single use.</td></tr>
+<tr><td> Lagging Tail<img src="http://cdn.bulbagarden.net/upload/c/c9/Bag_Lagging_Tail_Sprite.png "> </td><td>Holder moves last in its priority bracket.</td></tr>
+<tr><td>Lansat Berry <img src="http://www.serebii.net/itemdex/sprites/lansatberry.png "> </td><td>Holder gains the Focus Energy effect when at 1/4 max HP or less. Single use.</td></tr>
+<tr><td>Leftovers  <img src="http://www.legendarypokemon.net/images/items/164.png "> </td><td>At the end of every turn, holder restores 1/16 of its max HP.</td></tr>
+<tr><td> Liechi Berry<img src="http://www.serebii.net/itemdex/sprites/liechiberry.png "> </td><td>Raises holder's Attack by 1 stage when at 1/4 max HP or less. Single use.</td></tr>
+<tr><td>Lum Berry <img src="http://www.serebii.net/itemdex/sprites/lumberry.png "> </td><td>Holder cures itself if it is confused or has a major status condition. Single use.</td></tr>
+<tr><td>Magnet <img src="http://cdn.bulbagarden.net/upload/6/69/Bag_Magnet_Sprite.png "> </td><td>Holder's Electric-type attacks have 1.2x power.</td></tr>
+<tr><td>Maranga Berry <img src="http://www.serebii.net/itemdex/sprites/marangaberry.png "> </td><td>Raises holder's Sp. Def by 1 stage after it is hit by a special attack. Single use.</td></tr>
+<tr><td>Metal Coat  <img src="http://cdn.bulbagarden.net/upload/e/ee/Bag_Metal_Coat_Sprite.png "> </td><td>Holder's Steel-type attacks have 1.2x power.</td></tr>
+<tr><td> Miracle Seed<img src="http://cdn.bulbagarden.net/upload/e/ed/Bag_Miracle_Seed_Sprite.png "> </td><td>Holder's Grass-type attacks have 1.2x power.</td></tr>
+<tr><td> Mystic Water <img src="http://cdn.bulbagarden.net/upload/4/4e/Bag_Mystic_Water_Sprite.png "> </td><td>Holder's Water-type attacks have 1.2x power.</td></tr>
+<tr><td> Never-Melt Ice<img src="http://www.serebii.net/itemdex/sprites/nevermeltice.png "> </td><td>Holder's Ice-type attacks have 1.2x power.</td></tr>
+<tr><td> Occa Berry<img src="http://www.serebii.net/itemdex/sprites/occaberry.png "> </td><td>Halves damage taken from a supereffective Fire-type attack. Single use.</td></tr>
+<tr><td>Passho Berry  <img src="http://www.serebii.net/itemdex/sprites/passhoberry.png "> </td><td>Halves damage taken from a supereffective Water-type attack. Single use.</td></tr>
+<tr><td> Payapa Berry <img src="http://www.serebii.net/itemdex/sprites/payapaberry.png "> </td><td>Halves damage taken from a supereffective Psychic-type attack. Single use.</td></tr>
+<tr><td>Petaya Berry <img src="http://www.serebii.net/itemdex/sprites/petayaberry.png "> </td><td>Raises holder's Sp. Atk by 1 stage when at 1/4 max HP or less. Single use.</td></tr>
+<tr><td> Poison Barb<img src="http://cdn.bulbagarden.net/upload/d/d2/Bag_Poison_Barb_Sprite.png "> </td><td>Holder's Poison-type attacks have 1.2x power.</td></tr>
+<tr><td> Roseli Berry<img src="http://www.serebii.net/itemdex/sprites/roseliberry.png "> </td><td>Halves damage taken from a supereffective Fairy-type attack. Single use.</td></tr>
+<tr><td>Salac Berry <img src="http://www.serebii.net/itemdex/sprites/salacberry.png "> </td><td>Raises holder's Speed by 1 stage when at 1/4 max HP or less. Single use.</td></tr>
+<tr><td>Sitrus Berry <img src="http://www.serebii.net/itemdex/sprites/sitrusberry.png "> </td><td>Restores 1/4 max HP when at 1/2 max HP or less. Single use.</td></tr>
+<tr><td> Silk Scarf <img src="http://www.serebii.net/itemdex/sprites/silkscarf.png "> </td><td>  Holder's Normal-type attacks have 1.2x power.</td></tr>
+<tr><td>Silver Powder<img src="http://cdn.bulbagarden.net/upload/e/e0/Bag_Silver_Powder_Sprite.png "> </td><td>Holder's Bug-type attacks have 1.2x power.</td></tr>
+<tr><td>Sharp Beak<img src=" http://cdn.bulbagarden.net/upload/4/4b/Bag_Sharp_Beak_Sprite.png"> </td><td>Holder's Flying-type attacks have 1.2x power.</td></tr>
+<tr><td>Shuca Berry<img src=" http://www.serebii.net/itemdex/sprites/shucaberry.png"> </td><td>Halves damage taken from a supereffective Ground-type attack. Single use.</td></tr>
+<tr><td>Soft Sand <img src=" http://cdn.bulbagarden.net/upload/c/c5/Bag_Soft_Sand_Sprite.png"> </td><td>Holder's Ground-type attacks have 1.2x power.</td></tr>
+<tr><td> Spell Tag<img src=" http://media.pldh.net/items/hold/spelltag.png"> </td><td>Holder's Ghost-type attacks have 1.2x power.</td></tr>
+<tr><td>Starf Berry<img src="http://www.serebii.net/itemdex/sprites/starfberry.png "> </td><td>Raises a random stat by 2 when at 1/4 max HP or less (not acc/eva). Single use.</td></tr>
+<tr><td>Tanga Berry<img src=" http://www.serebii.net/itemdex/sprites/tangaberry.png"> </td><td>Halves damage taken from a supereffective Bug-type attack. Single use.</td></tr>
+<tr><td>Twisted Spoon<img src="http://cdn.bulbagarden.net/upload/7/75/Bag_Twisted_Spoon_Sprite.png "> </td><td>Holder's Psychic-type attacks have 1.2x power</td></tr>
+<tr><td>Wacan Berry<img src="http://www.serebii.net/itemdex/sprites/wacanberry.png "> </td><td>Halves damage taken from a supereffective Electric-type attack. Single use.</td></tr>
+<tr><td> Yache Berry<img src=" http://www.serebii.net/itemdex/sprites/yacheberry.png"> </td><td>Halves damage taken from a supereffective Ice-type attack. Single use.</td></tr>
+
+
+
+</table>
+
+</center>
+</div>
+
+</body>
+</html>

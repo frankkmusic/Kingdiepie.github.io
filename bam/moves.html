@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script src="sorttable.js"></script>
+<script>
+ 
+jQuery(document).ready(function() {
+ 
+var offset = 250;
+ 
+var duration = 300;
+ 
+jQuery(window).scroll(function() {
+ 
+if (jQuery(this).scrollTop() > offset) {
+ 
+jQuery(‘.back-to-top’).fadeIn(duration);
+ 
+} else {
+ 
+jQuery(‘.back-to-top’).fadeOut(duration);
+ 
+}
+ 
+});
+ 
+&nbsp;
+ 
+jQuery(‘.back-to-top’).click(function(event) {
+ 
+event.preventDefault();
+ 
+jQuery(‘html, body’).animate({scrollTop: 0}, duration);
+ 
+return false;
+ 
+})
+ 
+});
+ 
+</script>
+
+<link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media="screen">
+
+<style>
+
+	<style>
+
+.back-to-top {
+background: none;
+margin: 0;
+position: fixed;
+bottom: 2%;
+right: 2%;
+width: 50px;
+height: 50px;
+z-index: 100;
+display: none;
+text-decoration: none;
+color: #32CD32;
+background-color: rbga(ff,ff,ff,ff);
+a:hover { color: blue; text-decoration: none}
+}
+
+
+
+.back-to-top i {
+
+  font-size: 60px;
+
+}
+
+input {
+    width: 256px;
+	height: 32px;
+	font-size: 32px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 2px;
+    margin-right: px;
+	border: 2px solid #3086C2;
+    border-radius: 4px;
+}
+h3 { 
+    display: block;
+    font-size: 32px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 2px;
+    margin-right: px;
+    font-weight: bold;
+	color: #3086C2;
+}
+
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+	
+	
+}
+
+table { 
+color: #333;
+font-family: Helvetica, Arial, sans-serif; 
+border-collapse: 
+collapse; border-spacing: 0; 
+}
+
+td, th { 
+border: 1px solid transparent; /* No more visible border */
+height: 30px; 
+transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {
+background: #3086C2;  /* Darken header a bit */
+font-weight: bold;
+color: white;
+}
+
+td {
+background: #000000;
+text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */ 
+tr:nth-child(even) td { background: #EBEBF7; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+tr td:hover { background: #3086C2; color: #FFF; } /* Hover cell effect! */
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+}
+
+
+body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 10%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: 	#3086C2;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #DFDFDF;
+    color: #3086C2;
+	font-weight: bold;
+	
+}
+
+a:visited { color: #000000; text-decoration: none}
+a:link { color: #000000; text-decoration: none}
+
+
+</style>
+</head>
+<body>
+<ul>
+<font size="4%">
+  <li><a href="http://projectbam.proboards.com/">Home</a></li>
+  <li><a href="index.html">Pok&eacutemon</a></li>
+  <li><a class="active" href="moves.html">Moves</a></li>
+  <li><a href="item.html">Items</a></li>
+  <li><a href="abilities.html">Abilities</a></li>
+  <li><a href="chart.html">Type Chart</a></li>
+  <li><a class="back-to-top" style="vertical-align: bottom;" href="#" >Back to Top</a></li>	
+
+  </font>
+</ul>
+
+<div style="margin-left:10%;padding:1px 16px;height:09%;">
+<center> 
+</br></br>
+<h3>Move Search: <input height="32" width="128" type="text" id="search" placeholder=""></h3>
+<table class="sortable"  cellpadding="2" border="2px" id="table">
+<tr>
+
+    <th style="width:130px">Move</th>
+    <th style="width:50px">BP</th>		
+    <th style="width:50px">PP</th>
+    <th style="width:60px">Acc</th>
+    <th style="width:65px">Type</th>		
+    <th style="width:100px">Contact</th>
+    <th style="width:300px">Effect</th>
+	
+</tr>
+  <tr>
+    <td>Body Slam</td>
+    <td>85</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>30% chance to paralyze the target.</td>
+ </tr>
+ <tr>
+    <td>Concealed Power</td>
+    <td>70</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical</td>
+	<td>Varies in type based on the user's IVs</td>
+ </tr>
+ <tr>
+    <td>Covet</td>
+    <td>60</td>		
+    <td>40</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>If the user has no item, it steals the target's.</td>
+ </tr>
+ <tr>
+    <td>Disable</td>
+    <td>--</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>For 4 turns, disables the target's last move used.</td>
+	
+ </tr>
+ <tr>
+    <td>Double-Edge</td>
+    <td>120</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>Has 33% recoil.</td>
+ </tr>
+ <tr>
+    <td>Endure</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>The user survives the next hit with at least 1 HP.</td>
+ </tr>
+ <tr>
+    <td>Flail</td>
+    <td>--</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>Varies in type based on the user's IVsMore power the less HP the user has left.</td>
+ <tr>
+    <td>Growl</td>
+    <td>--</td>		
+    <td>64</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Lowers the foe(s) Attack by 1.</td>
+ </tr>
+ <tr>
+    <td>Heal Bell</td>
+    <td>--</td>		
+    <td>8</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Cures the user's party of all status conditions.</td>
+ </tr>
+ <tr>
+    <td>Howl</td>
+    <td>--</td>		
+    <td>64</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Raises the user's Attack by 1.</td>
+ </tr>
+ <tr>
+    <td>Metronome</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Picks a random move.</td>
+ </tr>
+ <tr>
+    <td>Pain Split</td>
+    <td>--</td>		
+    <td>32</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Shares HP of user and target equally.</td>
+ </tr>
+ <tr>
+    <td>Perish Song</td>
+    <td>--</td>		
+    <td>8</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>All active Pokemon will faint in 3 turns.</td>
+ </tr>
+ <tr>
+    <td>Pinch</td>
+    <td>30</td>		
+    <td>56</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>No additional effect.</td>
+ </tr>
+ <tr>
+    <td>Pound</td>
+    <td>40</td>		
+    <td>56</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>No additional effect.</td>
+ </tr>
+ <tr>
+    <td>Protect</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Prevents moves from affecting the user this turn.</td>
+ </tr>
+ <tr>
+    <td>Recycle</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Restores the item the user last used.</td>
+ </tr>
+ <tr>
+    <td>Regulator Wave</td>
+    <td>80</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Special (S)</td>
+	<td>No additional effect.</td>
+ </tr>
+ <tr>
+    <td>Scratch</td>
+    <td>40</td>		
+    <td>56</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical(C)</td>
+	<td>No additional effect.</td>
+ </tr>
+ <tr>
+    <td>Sleep Talk</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>User must be asleep. Uses another known move.</td>
+ </tr>
+ <tr>
+    <td>Smash</td>
+    <td>40</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>100% Crit Rate</td>
+ </tr>
+ <tr>
+    <td>Spike Attack</td>
+    <td>60</td>		
+    <td>32</td>
+	<td>90%</td>
+    <td>Normal</td>		
+    <td>Physical</td>
+	<td>No additional effect</td>
+ </tr>
+ <tr>
+    <td>Spin Attack</td>
+    <td>50</td>		
+    <td>32</td>
+	<td>95%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>100% Crit Rate </td>
+ </tr>
+ <tr>
+    <td>Substitute</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>User takes 1/4 its max HP to put in a Substitute.</td>
+ </tr>
+ <tr>
+    <td>Tail Slam</td>
+    <td>25</td>		
+    <td>16</td>
+	<td>85%</td>
+    <td>Normal</td>		
+    <td>Physical</td>
+	<td>Hits 2-5 times in one turn.</td>
+ </tr>
+ <tr>
+    <td>Transform</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Copies target's stats, moves, types, and Ability.</td>
+ </tr>
+ <tr>
+    <td>Tumble</td>
+    <td>30</td>		
+    <td>56</td>
+	<td>90%</td>
+    <td>Normal</td>		
+    <td>Physical</td>
+	<td>No additional effect.</td>
+ </tr>
+ <tr>
+    <td>Unnatural Slice</td>
+    <td>90</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Normal</td>		
+    <td>Physical (C)</td>
+	<td>Hits Ghost types Super Effectively</td>
+ </tr>
+ <tr>
+    <td>Whirlwind</td>
+    <td>--</td>		
+    <td>32</td>
+	<td>--</td>
+    <td>Normal</td>		
+    <td>Status</td>
+	<td>Forces the target to switch to a random ally.</td>
+ </tr>
+ <tr>
+    <td>Bulk Up</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Fighting</td>		
+    <td>Status</td>
+	<td>Raises the user's Attack and Defense by 1.</td>
+ </tr>
+ <tr>
+    <td>Brutal Uppercut</td>
+    <td>100</td>		
+    <td>16</td>
+	<td>90%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>1/4 recoil.</td>
+ </tr>
+ <tr>
+    <td>Dazzling Punch</td>
+    <td>55</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Reduces foe's SpD by 1 stage.</td>
+ </tr>
+ <tr>
+    <td>Disarm</td>
+    <td>55</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Reduces foe's Atk by 1 stage.</td>
+ </tr>
+ <tr>
+    <td>Energy Fist</td>
+    <td>55</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Restores 100% of damage dealt.</td>
+ </tr>
+ <tr>
+    <td>Focus Punch</td>
+    <td>150</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Fails if the user takes damage before it hits.</td>
+ </tr>
+ <tr>
+    <td>Judo Slam</td>
+    <td>30</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Next turn, 50% of the user's max HP is restored.</td>
+ </tr>
+ <tr>
+    <td>Low Blow</td>
+    <td>60</td>		
+    <td>16</td>
+	<td>95%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>50% chance for 1 turn taunt effect</td>
+ </tr><tr>
+    <td>One-Two Punch</td>
+    <td>35</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Next turn, 50% of the user's max HP is restored.</td>
+ </tr>
+ <tr>
+    <td>Reset Punch</td>
+    <td>10</td>		
+    <td>48</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Eliminates all stat changes.</td>
+ </tr>
+ <tr>
+    <td>Reversal</td>
+    <td>--</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>More power the less HP the user has left.</td>
+ </tr>
+ <tr>
+    <td>Sliding Kick</td>
+    <td>90</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>10% flinch chance.</td>
+ </tr>
+ <tr>
+    <td>Super Punch</td>
+    <td>50</td>		
+    <td>24</td>
+	<td>90%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>No additional effects.</td>
+	
+ </tr>
+ <tr>
+    <td>Tag Out</td>
+    <td>--</td>		
+    <td>64</td>
+	<td>--</td>
+    <td>Fighting</td>		
+    <td>Status</td>
+	<td>User switches.</td>
+ </tr>
+ <tr>
+    <td>Tornado Kick</td>
+    <td>85</td>		
+    <td>16</td>
+	<td>85%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>10% flinch chance.</td>
+ </tr>
+ <tr>
+    <td>Tornado Punch</td>
+    <td>30</td>		
+    <td>16</td>
+	<td>95%</td>
+    <td>Fighting</td>		
+    <td>Physical (C)</td>
+	<td>Hits 2-5 times.</td>
+ </tr>
+ <tr>
+    <td>Vortex Punch</td>
+    <td>90</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Special</td>
+	<td>No additional effects.</td>
+ </tr><tr>
+    <td>Whirlwind Palm</td>
+    <td>40</td>		
+    <td>48</td>
+	<td>100%</td>
+    <td>Fighting</td>		
+    <td>Status</td>
+	<td>+1 Priority.</td>
+ </tr>
+ <tr>
+    <td>Ember</td>
+    <td>40</td>		
+    <td>40</td>
+	<td>100%</td>
+    <td>Fire</td>		
+    <td>Special</td>
+	<td>10% chance to burn the target.</td>
+ </tr>
+ <tr>
+    <td>Fiery Spell</td>
+    <td>--</td>		
+    <td>24</td>
+	<td>--</td>
+    <td>Fire</td>		
+    <td>Status</td>
+	<td>Burns the target.</td>
+ </tr>
+ <tr>
+    <td>Fireball</td>
+    <td>80</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fire</td>		
+    <td>Physical</td>
+	<td>No additional effects.</td>
+ </tr>
+ <tr>
+    <td>Fire Breath</td>
+    <td>90</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fire</td>		
+    <td>Special</td>
+	<td>No additional effects.</td>
+ </tr>
+ <tr>
+    <td>Flaming Fist</td>
+    <td>80</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Fire</td>		
+    <td>Physical (C)</td>
+	<td>No additional effects.</td>
+ </tr>
+ <tr>
+    <td>Hellfire</td>
+    <td>80</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fire</td>		
+    <td>Special</td>
+	<td>Super-Effective on Ghost-Types</td>
+ </tr>
+ <tr>
+    <td>Ignite</td>
+    <td>20</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Fire</td>		
+    <td>Special</td>
+	<td>Burns the target.</td>
+ </tr>
+ <tr>
+    <td>Rekindle</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Fire/td>		
+    <td>Status</td>
+	<td>Heals the user by 50% of its max HP.</td>
+ </tr>
+ <tr>
+    <td>War Cry</td>
+    <td>--</td>		
+    <td>24</td>
+	<td>--</td>
+    <td>Fire</td>		
+    <td>Status</td>
+	<td>Raises the user's Attack by 2.</td>
+ </tr>
+ <tr>
+    <td>Abyssal Slash</td>
+    <td>80</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Physical (C)</td>
+	<td>High crit ratio.</td>
+ </tr>
+
+  <tr>
+    <td>Bubble</td>
+    <td>40</td>		
+    <td>48</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Special</td>
+	<td>Raises the user's Attack by 2.</td>
+ </tr>
+
+  <tr>
+    <td>Bubble Beam</td>
+    <td>65</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Special</td>
+	<td>Raises the user's Attack by 2.</td>
+ </tr>
+  <tr>
+    <td>Harsh Current</td>
+    <td>80</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Special</td>
+	<td>30% chance to paralyse target. </td>
+ </tr>
+
+  <tr>
+    <td>Misty Blast</td>
+    <td>75</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Special</td>
+	<td>No additional effects.</td>
+ </tr>
+
+  <tr>
+    <td>Tidal Wave</td>
+    <td>95</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Special</td>
+	<td>No additional effects.</td>
+ </tr>
+ <tr>
+    <td>Torrential Crash</td>
+    <td>100</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Physical</td>
+	<td>Has 33% recoil. </td>
+ </tr>
+
+  <tr>
+    <td>Wash Away</td>
+    <td>--</td>		
+    <td>24</td>
+	<td>--</td>
+    <td>Water</td>		
+    <td>Status</td>
+	<td>Removes hazards from field.</td>
+ </tr>
+
+  <tr>
+    <td>Water Gun</td>
+    <td>40</td>		
+    <td>40</td>
+	<td>100%</td>
+    <td>Water</td>		
+    <td>Special</td>
+	<td>No additional effect.</td>
+ </tr>
+  <tr>
+    <td>Water Gun</td>
+    <td>25</td>		
+    <td>48</td>
+	<td>100%</td>
+    <td>Grass</td>		
+    <td>Physical</td>
+	<td>No additional effect.</td>
+ </tr>
+
+   <tr>
+    <td>Bullet Seed</td>
+    <td>40</td>		
+    <td>40</td>
+	<td>100%</td>
+    <td>Grass</td>		
+    <td>Special</td>
+	<td>Hits 2-5 times in one turn.</td>
+ </tr>
+  <tr>
+    <td>Canopy</td>
+    <td>--</td>		
+    <td>40</td>
+	<td>--</td>
+    <td>Grass</td>		
+    <td>Status</td>
+	<td>For 5 turns, protects user's party from status.</td>
+ </tr>
+
+   <tr>
+    <td>Chlorobeam</td>
+    <td>80</td>		
+    <td>24</td>
+	<td>100%</td>
+    <td>Grass</td>		
+    <td>Special</td>
+	<td>No additional effect.</td>
+ </tr>
+
+   <tr>
+    <td>Forest Call</td>
+    <td>90</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Grass</td>		
+    <td>Special</td>
+	<td>No additional effect.</td>
+ </tr>
+
+   <tr>
+    <td>Grass Blade</td>
+    <td>95</td>		
+    <td>16</td>
+	<td>100%</td>
+    <td>Grass</td>		
+    <td>Physical(C)</td>
+	<td>No additional effect.</td>
+ </tr>
+
+   <tr>
+    <td>Leech Seed</td>
+    <td>--</td>		
+    <td>16</td>
+	<td>--</td>
+    <td>Grass</td>		
+    <td>Status</td>
+	<td>1/8 of target's HP is restored to user every turn.</td>
+ </tr>
+
+   <tr>
+    <td>Mower</td>
+    <td>50</td>		
+    <td>32</td>
+	<td>100%</td>
+    <td>Grass</td>		
+    <td>Physical (C)</td>
+	<td>Super Effective on Grass types.</td>
+ </tr>
+
+   <tr>
+    <td>Vine Guard</td>
+    <td>--</td>		
+    <td>48</td>
+	<td>--</td>
+    <td>Grass</td>		
+    <td>Status</td>
+	<td>For 5 turns, special damage to allies is halved.</td>
+ </tr>
+
+ 
+</table>
+</center>
+</div>
+<center>
+
+	
+</body>
+</html>
+
+
