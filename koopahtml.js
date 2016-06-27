@@ -4,7 +4,6 @@ var koopaTimer = 40;
 var timer = 10;
 var fallSpeed=4;
 var koopaSize = 30;
-var plumberW = 20;
 var Mcount = 0;
 var Lcount = 0;
 var Count = 0; 
@@ -149,8 +148,8 @@ function render(){
 }
 
 function check(m){
-  if (m.x<mario.x+plumberW && mario.x+plumberW<m.x+koopaSize && m.y<mario.y && mario.y < m.y+koopaSize && mario.alive === true){mario.alive=false; if (Mcount<Count)Mcount = Count;}
-  if (m.x<luigi.x+plumberW && luigi.x+plumberW<m.x+koopaSize && m.y<luigi.y && luigi.y < m.y+koopaSize && luigi.alive === true){luigi.alive=false; if (Lcount<Count)Lcount = Count;}
+  if (m.x<mario.x && mario.x<m.x+koopaSize && m.y<mario.y && mario.y < m.y+koopaSize && mario.alive === true){mario.alive=false; if (Mcount<Count)Mcount = Count;}
+  if (m.x<luigi.x && luigi.x<m.x+koopaSize && m.y<luigi.y && luigi.y < m.y+koopaSize && luigi.alive === true){luigi.alive=false; if (Lcount<Count)Lcount = Count;}
 }
 
 function reset(){
