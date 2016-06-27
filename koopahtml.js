@@ -26,6 +26,16 @@ addEventListener("keyup", function(e) {
     delete keysDown[e.keyCode];
 }, false);
 
+
+//prevent arrow key scrolling
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
+
+
 class plumber{
   constructor(x,y,img,s){
     this.x=x;
