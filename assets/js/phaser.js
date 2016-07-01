@@ -20,7 +20,7 @@ var box = function(options) {
 var mainState = {
   preload: function(){
     var music;
-    game.load.audio('sound1',['track01.mp3','track01.ogg']);
+    game.load.audio('sound1',['assets/js/track01.mp3','assets/js/track01.ogg']);
   },
   
 	create: function() {
