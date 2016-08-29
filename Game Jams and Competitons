@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Game Jams</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+    <!-- Header -->
+  <header id="header">
+    <h1><a href="index.html">Dominik Yakoubek</a></h1>
+    <a href="#nav">Menu</a>
+  </header>
+
+<!-- Nav -->
+<nav id="nav">
+	<ul class="links">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="generic.html">Bio</a></li>
+		<li><a href="compsci.html">Project List</a></li>
+		<li><a href="calc.html">Calc Programs</a></li>
+		<li><a href="htmlcalc.html">Final Exam and GPA Calc</a></li>
+		<li><a href="bam.html">BAM</a></li>
+		<li><a href="SocialMedia.html">Contact Me</a></li>
+    <li><a href="arcade.html">HTML5 Arcade</a></li>
+	</ul>
+</nav>
+
+  <!-- One -->
+
+
+    <section id="one" class="wrapper style1">
+      <div class="inner">
+				<center><h2>Ludum Dare 36</h2>
+             <article class="feature right">
+          <span class="image"><img src="invaders.png" alt="" /></span>
+          <div class="content">
+            <h2>The Cursed Farmer</h2>
+            <p>A remake of Space Invaders, it uses Phaser as a game engine to provide less repetitive code.</p>
+            <ul class="actions">
+              <li>
+                <a href="invaders.html" class="button alt">More</a>
+              </li>
+            </ul>
+          </div>
+        </article>
+   
+
+
+
+		</div>
+
+    </section>
+
+    <!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://www.facebook.com/dominikyakoubekcode/" class="icon fa-facebook">
+						<span class="label">Facebook</span>
+					</a></li>
+					<li><a href="https://twitter.com/The_K_Legacy" class="icon fa-twitter">
+						<span class="label">Twitter</span>
+					</a></li>
+						<li><a href="https://github.com/Kingdiepie" class="icon fa-github"><span class="label">Github</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li>
+					<li>Images: <a href="index.html">DOMINIK YAKOUBEK</a>.</li>
+					<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+				</ul>
+			</div>
+		</footer>
+
+
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="assets/js/main.js"></script>
+
+  </body>
+</html>
