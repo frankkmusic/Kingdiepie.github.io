@@ -316,10 +316,10 @@ var mainState = {
 
         function runSeason() {
             money -= checkFood();
-            cornYield = roundToTwo(cornYield * (randomActsOfNature() + ((0.005 * slaves) + (0.03 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.03 * screenYear))));
-            wheatYield = roundToTwo(wheatYield * (randomActsOfNature() + ((0.01 * slaves) + (0.03 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.03 * screenYear))));
-            potatoesYield = roundToTwo(potatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.03 * screenYear))));
-            tomatoesYield = roundToTwo(tomatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.03 * screenYear))));
+            cornYield = roundToTwo(cornYield * (randomActsOfNature() + ((0.005 * slaves) + (0.03 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.02 * screenYear))));
+            wheatYield = roundToTwo(wheatYield * (randomActsOfNature() + ((0.01 * slaves) + (0.03 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.02 * screenYear))));
+            potatoesYield = roundToTwo(potatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.02 * screenYear))));
+            tomatoesYield = roundToTwo(tomatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle)-(0.02 * screenYear))));
             if(cornYield > 2)cornYield = 2;
             if(wheatYield > 2)wheatYield = 2;
             if(potatoesYield > 2)potatoesYield = 2;
