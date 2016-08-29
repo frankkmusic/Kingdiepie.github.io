@@ -489,7 +489,7 @@ var mainState = {
             game.state.start('death');
         }
         if (screenYear === 30) {
-            game.states.start('win');
+            game.state.start('win');
         }
     },
 };
