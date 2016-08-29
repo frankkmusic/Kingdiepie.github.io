@@ -320,6 +320,10 @@ var mainState = {
             wheatYield = roundToTwo(wheatYield * (randomActsOfNature() + ((0.01 * slaves) + (0.03 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
             potatoesYield = roundToTwo(potatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
             tomatoesYield = roundToTwo(tomatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
+            if(cornYield > 2)cornYield = 2;
+            if(wheatYield > 2)wheatYield = 2;
+            if(potatoesYield > 2)potatoesYield = 2;
+            if(tomatoesYield > 2)tomatoesYield = 2;
             Cseason++;
             money -= (hands * 2);
             if (Cseason === 1) {
