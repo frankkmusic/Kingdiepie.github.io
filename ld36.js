@@ -87,7 +87,7 @@ var mainState = {
         var expData = new Array(2);
 
         function randomActsOfNature() {
-            return Math.random() * (1.3 - (0.6 - (.05*screenYear+1))) + (0.6 + (.05*screenYear+1));
+            return Math.random() * (1.3 - (0.6 - (.1*screenYear+1))) + (0.6 + (.1*screenYear+1));
         }
 
         function roundToTwo(num) {
@@ -316,10 +316,10 @@ var mainState = {
 
         function runSeason() {
             money -= checkFood();
-            cornYield = roundToTwo(cornYield * (randomActsOfNature() + ((0.005 * slaves) + (0.03 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
-            wheatYield = roundToTwo(wheatYield * (randomActsOfNature() + ((0.01 * slaves) + (0.03 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
-            potatoesYield = roundToTwo(potatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
-            tomatoesYield = roundToTwo(tomatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.002 * tools) + (0.008 * horses) + (0.01 * plows) + (0.02 * cattle))));
+            cornYield = roundToTwo(cornYield * (randomActsOfNature() + ((0.005 * slaves) + (0.03 * hands) + (0.002 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle))));
+            wheatYield = roundToTwo(wheatYield * (randomActsOfNature() + ((0.01 * slaves) + (0.03 * hands) + (0.002 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle))));
+            potatoesYield = roundToTwo(potatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.0005 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle))));
+            tomatoesYield = roundToTwo(tomatoesYield * (randomActsOfNature() + ((0.005 * slaves) + (0.02 * hands) + (0.002 * tools) + (0.006 * horses) + (0.01 * plows) + (0.02 * cattle))));
             if(cornYield > 2)cornYield = 2;
             if(wheatYield > 2)wheatYield = 2;
             if(potatoesYield > 2)potatoesYield = 2;
