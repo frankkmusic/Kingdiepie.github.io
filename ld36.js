@@ -362,6 +362,8 @@ var mainState = {
             tomatoes = tomatoes | 0;
             potatoes = potatoes | 0;
             slaves = slaves | 0;
+            hands = hands | 0;
+            money = money | 0
             game.state.start('main');
         }
 
