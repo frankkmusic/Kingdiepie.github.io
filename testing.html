@@ -108,7 +108,7 @@ table.sortable thead {
 			var cols = 9; 
 			var table = "<table class=\"sortable\" cellpadding=\"5\" id=\"theTable\">";
 			xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function () {
+			xmlhttp.onload = function () {
 				if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
 					theData = xmlhttp.responseText;
 					console.log(theData.substring(0));
