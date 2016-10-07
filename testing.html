@@ -109,7 +109,7 @@ table.sortable thead {
 			var table = "<table class=\"sortable\" cellpadding=\"5\" id=\"theTable\">";
 			xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function () {
-				if (xmlhttp.readyState == 4) {
+				if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
 					theData = xmlhttp.responseText;
 					console.log(theData.substring(0));
 					var rows = (theData.substring(0).split('"').length-1)/2-1;
