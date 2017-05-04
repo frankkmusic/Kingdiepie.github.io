@@ -1,0 +1,125 @@
+
+<html>
+	<head>
+		<title>Board</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+
+
+
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+
+		<link rel="stylesheet" href="css/anythingzoomer.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="js/jquery.anythingzoomer.js"></script>
+		<script>
+		$(function() {
+
+			$(".zoom").anythingZoomer({
+				overlay : true,
+				edit: true,
+				// If you need to make the left top corner be at exactly 0,0, adjust the offset values below
+				offsetX : 0,
+				offsetY : 0
+			});
+
+			$('.president')
+			.bind('click', function(){
+				return false;
+			})
+			.bind('mouseover click', function(){
+				var loc = $(this).attr('rel');
+				if (loc && loc.indexOf(',') > 0) {
+					loc = loc.split(',');
+					$('.zoom').anythingZoomer( loc[0], loc[1] );
+				}
+				return false;
+			});
+
+		});
+		</script>
+
+
+		<link rel="stylesheet" href="main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+	<style>td, th {
+vertical-align:top;
+}
+
+#page td {
+   padding:0; margin:0;
+}
+
+#page {
+   border-collapse: collapse;
+}
+
+table {
+border-spacing: 0;
+border-collapse: collapse;
+padding:0;
+}
+
+ul {
+  width :65%;
+}
+
+li {
+  text-align: left;
+}
+
+
+</style>
+
+
+
+
+	</head>
+<body id="image">
+
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Dominik Yakoubek</a></h1>
+				<div style=" position: absolute; left: 30%; margin-left: -100px;">
+				<a href="index.html">Home</a>
+				<a href="60secs.html">60 Podcast</a>
+				<a href="paper.html">SIRs Paper</a>
+				<a href="board.html">Board</a>
+				<a href="resume.html">Resume</a>
+				<a href="tech.html">Equipment and Techniques</a>
+				<a href="ref.html">Refrences</a>
+			</div>
+			</header>
+
+			<div id="main-content">
+
+
+<br><br><br><center>
+				<div class="zoom">
+
+					<div class="small">
+						<img src="board.png" alt="small rushmore" style="width:80%">
+					</div>
+
+					<div class="large">
+						<img src="board.png" alt="big rushmore" style="width:320%">
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+</center>
+
+
+
+
+	</body>
+</html>
