@@ -28,10 +28,18 @@ var MoveLeft = false;
 var MoveRight = false;
 var SpriteChanged = false;
 var maps = false;
-var buffer1 = 0; 
-var buffer2 = 0;
-var buffer3 = 0;
+var dioTimer = 10;
+var dio;
+var dioOn = false;
+var dioS;
+var dioL = 500;
+var dioC;
+var dioI;
+var dioPaused = false; 
 var credits = false; 
+var stats2 = false;
+var dioOn2 =true;
+var dioChar;
 var update = function(modifier) {
 houseSouth = false;
 hero.weapon = hero.hweapon.atk + hero.hassesory.atk;
@@ -297,7 +305,7 @@ if (pause === false){
     }
     
     
-  console.log("credits"+CreditsB.x1);
+
    changeImg();
    checkHouses();
    checkInns();
@@ -315,9 +323,7 @@ if(map[mapCordsX][mapCordsY][7] !== 0){
       if (hero.x <= (osHouseList[i].x + 111) && osHouseList[i].x <= (hero.x + 32) && hero.y <= (osHouseList[i].y + 98) && osHouseList[i].y <= (hero.y-12)) {
         hero.x = oldherox;
         hero.y = oldheroy;
-
       }
-
     }
 
   for (i = 0; i<osInnList.length; i++){
@@ -337,19 +343,76 @@ if(map[mapCordsX][mapCordsY][7] !== 0){
         hero.x = oldherox;
         hero.y = oldheroy;
       }
-
+      if (!(hero.x > (osNPC[i].x + 32) || hero.x+32 < (osNPC[i].x) || hero.y > (osNPC[i].y+32) || hero.y+32 < (osNPC[i].y))) {
+        hero.x = oldherox;
+        console.log("testing for npc");
+        hero.y = oldheroy;
+        Dialogue(osNPC[i].msg);
+      }
+      //TODO:Make NPC a solid object
     }
   }
 }
 }
+
+
+if (dioOn === true && dioPaused === false){
+  dioTimer--;
+  if (dioTimer === 0){
+    dioTimer = 2;
+    if(dioC === 0)
+      dioChar = 0;
+    else
+      dioChar += ctx.measureText(dio[dioI].substring(dioC-1,dioC)).width; 
+    renderLetter(dio[dioI].substring(dioC,dioC+1),30+dioChar,460);
+    console.log(dioChar);
+    dioC++;
+    if(dioC === dioL){
+      dioI++;
+      dioPaused = true; 
+      dioC = 0;
+      if(dioI != dioS)
+      dioL = dio[dioI].length;
+    }
+    if(dioI === dioS){
+      dioOn = false;
+      dioPaused=true;
+    }
+    }
+}
+qPress =false;
 };
 
 //////////////////////////////////Update Method/////////////////////////////////
-
-
 ////////////////////// Update game objects graphics/////////////////////////////
 
+var Dialogue = function(d){
+  dioOn = true;
+  dio = d;
+  dioS = d.length;
+  dioI = 0;
+  dioL = d[dioI].length;
+  dioC = 0;
+  dioChar = 0;
+  pauseIt();
+  renderDioBox();
+  hero.y+=20;
+  
+};
 
+function renderLetter(m,x,y){
+  ctx.font = "26px New Rocker";
+  ctx.textAlign = "left";
+  ctx.fillText(m,x,y);
+}
+
+function renderDioBox(){
+  ctx.fillStyle = "#00AACF";
+  ctx.globalAlpha=0.6;
+  ctx.fillRect(10, 430, 968, 50);
+  ctx.globalAlpha = 1.0;
+  ctx.fillStyle = "#FFFFFF";
+}
 
 // Draw everything
 var render = function() {
@@ -372,7 +435,9 @@ var render = function() {
         }
         for(i = 0; i<osTavernList.length; i++){
           ctx.drawImage(tavern, osTavernList[i].x, osTavernList[i].y);
-          
+        }
+        for(i = 0; i<osNPC.length; i++){
+          ctx.drawImage(osNPC[i].img, osNPC[i].x, osNPC[i].y);
         }
       }
     }
@@ -383,15 +448,15 @@ var render = function() {
         }
         for(i = 0; i<osShopList.length; i++){
           ctx.drawImage(shop, osShopList[i].x, osShopList[i].y);
-          
+        }
+        for(i = 0; i<osNPC.length; i++){
+          ctx.drawImage(osNPC[i].img, osNPC[i].x, osNPC[i].y);
         }
         for(i = 0; i<osInnList.length; i++){
           ctx.drawImage(inn, osInnList[i].x, osInnList[i].y);
-          
         }
         for(i = 0; i<osTavernList.length; i++){
           ctx.drawImage(tavern, osTavernList[i].x, osTavernList[i].y);
-          
         }
         }
           ctx.drawImage(heroImage, hero.x, hero.y);
@@ -400,9 +465,8 @@ var render = function() {
 
         for (i = 0; i<onscreenMonster.length; i++){
         ctx.drawImage(onscreenMonster[i].img, onscreenMonster[i].x, onscreenMonster[i].y);
-
-      
       }
+    
     
       battleTest = false;
   for (i = 0; i<onscreenMonster.length; i++){
@@ -450,6 +514,7 @@ var render = function() {
    
 
 var render2 = function() {
+
     if(statsScreen === true){
       mapScrollY += 10;
       if(mapScrollY > 500){mapScrollY = 500;}
@@ -472,15 +537,17 @@ var render2 = function() {
     ctx.fillRect(CreditsB.x1-3,CreditsB.y1-mapScrollY+250+64+64+128,128,128);
     ctx.fillStyle="white";
     ctx.font = "24px New Rocker";
-    ctx.fillText("Inventory",InventoryB.x1+8+buffer3,InventoryB.y1+128 + 128-mapScrollY+250+64-buffer1);
-    ctx.fillText("Stats",StatsB.x1+30+buffer3/2,StatsB.y1+128 + 128-mapScrollY+250+64-buffer1);
-    ctx.fillText("Map",MapB.x1+40+buffer3/2,MapB.y1 + 128 +128-mapScrollY+250+64-buffer1);
-    ctx.fillText("Credits",CreditsB.x1+20+buffer3/2,CreditsB.y1 +128 + 128-mapScrollY+250+64-buffer1);
+    ctx.fillText("Inventory",InventoryB.x1+8,InventoryB.y1+128 + 128-mapScrollY+250+64);
+    ctx.fillText("Stats",StatsB.x1+30/2,StatsB.y1+128 + 128-mapScrollY+250+64);
+    ctx.fillText("Map",MapB.x1+40/2,MapB.y1 + 128 +128-mapScrollY+250+64);
+    ctx.fillText("Credits",CreditsB.x1+20/2,CreditsB.y1 +128 + 128-mapScrollY+250+64);
     
 };
 
 var renderBar = function(){
-font = "20px New Rocker";
+    font = "20px New Rocker";
+    ctx.textAlign="left"; 
+
     var my_gradient=ctx.createLinearGradient(0,980,0,0);
     my_gradient.addColorStop(0,"#7a7a52");
     // my_gradient.addColorStop(0.25,"#336600");
@@ -490,34 +557,31 @@ font = "20px New Rocker";
     ctx.fillStyle=my_gradient;
     ctx.fillRect(0,480,988,610);
     ctx.fillStyle="black";
-    ctx.fillText("HP: " + hero.hp, 16+buffer3,484+20-buffer1);
-    ctx.fillText("Level: " + hero.lvl,128+16+buffer3,484+20-buffer1);
-    ctx.fillText("Silver: " + hero.silver, 256+16+buffer3,484+20-buffer1);
-    my_gradient=ctx.createLinearGradient(0,980,0,0+20-buffer1);
+    ctx.fillText("HP: " + hero.hp, 16,484+20);
+    ctx.fillText("Level: " + hero.lvl,128+16,484+20);
+    ctx.fillText("Silver: " + hero.silver, 256+16,484+20);
+    my_gradient=ctx.createLinearGradient(0,980,0,0+20);
     my_gradient.addColorStop(0,"#634b30");
     // my_gradient.addColorStop(0.25,"#336600");
     my_gradient.addColorStop(0.5,"#7d5d3b");
     //my_gradient.addColorStop(0.75,"#666633");
     my_gradient.addColorStop(1,"#634b30");
     ctx.fillStyle=my_gradient;
-    ctx.fillRect(MenuB.x1-3,MenuB.y1,256,128+50-buffer1);
-    ctx.fillRect(NextB.x1-3,NextB.y1,256,128+50-buffer1);
+    ctx.fillRect(MenuB.x1-3,MenuB.y1,256,128+50);
+    ctx.fillRect(NextB.x1-3,NextB.y1,256,128+50);
     ctx.fillStyle="white";
     ctx.font = "64px New Rocker";
-    ctx.fillText("Menu",MenuB.x1+48+buffer2,MenuB.y1 + 32+50-buffer1*3);
-    ctx.fillText("Next",NextB.x1+48+buffer2,NextB.y1 + 32+50-buffer1*3);
+    ctx.fillText("Menu",MenuB.x1+48,MenuB.y1 + 32+50);
+    ctx.fillText("Next",NextB.x1+48,NextB.y1 + 32+50);
 };
 
 
 
 var renderStats = function(){
+
   ctx.drawImage(bgImage2, 0, 0+230);
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "20px New Rocker";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
     ctx.fillText("Level : " + hero.lvl, 32, 56+250);
     ctx.fillText("Experience: " + float2int(hero.exp/expNeeded *100) +"%", 140, 56+250);
     ctx.fillText("Cords : " + mapCordsX + "," + mapCordsY, 32, 32+250);
@@ -533,13 +597,16 @@ var renderStats = function(){
     ctx.drawImage(hero.hheadgear.img,149,165+250);
     if(hero.hassesory.def !== 0)
     ctx.drawImage(hero.hassesory.img,201,165+250);
+  
 };
 
 var renderMap = function(){
+ 
   var n = 0;
   ctx.beginPath();
   ctx.lineWidth="2";
   ctx.drawImage(bgImage2, 0, 0+230);
+  
   for(var i = mapXmax+1; i > 0;i-- ){
     for(var j = mapYmax+1; j > 0;j--){
       ctx.strokeStyle="white";
@@ -565,20 +632,65 @@ var renderMap = function(){
     n++;
   if(n>4){n=0;}
   }
+  ctx.fillStyle = "rgb(0, 0, 160)";
+  ctx.fillRect(700,300,32,32);
+  ctx.fillStyle = "rgb(0, 102, 0)";
+  ctx.fillRect(700,350,32,32);
+  ctx.fillStyle = "rgb(160, 0, 0)";
+  ctx.fillRect(700,400,32,32);
+  ctx.font = "32px New Rocker";
+  ctx.textAlign="left";
+  ctx.fillStyle = "rgb(250, 250, 250)";
+  ctx.fillText("Town",740,320);
+  ctx.fillText("Wilderness",740,370);
+  ctx.fillText("Your Location",740,420);
 };
 
 var renderCredits = function(){
+
    ctx.drawImage(bgImage2, 0, 0+230);
    ctx.font = "32px New Rocker";
    ctx.textAlign="center"; 
    ctx.fillText("Created By: Dominik Yakoubek",canvas.width/2,280);
-   ctx.fillText("Version 0.4.3",canvas.width/2,320);
-   if(credits === false){
-     credits = true;
-     buffer3 += 55;
-     buffer2+= 75;
-   }
-   
+   ctx.fillText("Version 0.4.4",canvas.width/2,320);
+    
+   ctx.textAlign="left";
+};
+
+var renderInventory = function(){
+
+  ctx.drawImage(bgImage2, 0, 0+230);
+  ctx.textAlign="right";
+  ctx.font = "24px New Rocker";
+  ctx.fillText("Weapon:",400,280);
+  ctx.fillText("Armor:",400,330);
+  ctx.fillText("Headgear:",400,380);
+  ctx.fillText("Sheild:",400,430);
+  ctx.fillStyle = "rgb(255, 0, 0)";
+  ctx.fillText("+"+hero.hweapon.atk,510,280);
+  ctx.fillText("+0",510,330);
+  ctx.fillText("+0",510,380);
+  ctx.fillText("+"+hero.hassesory.atk,510,430);
+  ctx.fillStyle = "rgb(0, 255, 0)";
+  ctx.fillText("+0",550,280);
+  ctx.fillText("+"+hero.hchest.def,550,330);
+  ctx.fillText("+"+hero.hheadgear.def,550,380);
+  ctx.fillText("+"+hero.hassesory.def,550,430);
+  ctx.drawImage(hero.hweapon.img,420,250);
+  ctx.drawImage(hero.hchest.img,420,300);
+  ctx.drawImage(hero.hheadgear.img,420,350);
+  ctx.drawImage(hero.hheadgear.img,420,350);
+  ctx.drawImage(hero.hassesory.img,420,400);
+  ctx.textAlign="left"; 
+  ctx.fillStyle = "rgb(255, 0, 0)";
+  ctx.fillRect(650,300,32,32);
+  ctx.fillStyle = "rgb(0, 255, 0)";
+  ctx.fillRect(650,360,32,32);
+  ctx.font = "32px New Rocker";
+  ctx.textAlign="left";
+  ctx.fillStyle = "rgb(250, 250, 250)";
+  ctx.fillText("Attack Bonus",700,330);
+  ctx.fillText("Defense Bonus",700,390);
 };
 
 /////////////////////////Update game objects graphics/////////////////////////// 

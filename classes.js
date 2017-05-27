@@ -18,6 +18,19 @@ class Monster{
 }
 
 
+class NPC{
+  
+  constructor(x,y,img,msg,name){
+    this.x = x;
+    this.y = y;
+    this.img = new Image();
+    this.img.src = img;
+    this.msg =msg;
+    this.n = name;
+  }
+}
+
+
 class Weapon{
 
   constructor(w,img,p){

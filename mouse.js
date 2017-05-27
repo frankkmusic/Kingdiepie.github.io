@@ -15,7 +15,18 @@ var oldcanvas = {
        
         var x = 0;
         var y = 0;
-
+        if(dioPaused === true){
+        if(dioOn === false){
+          qPress =true;
+        }
+        dioPaused=false;
+        render();
+        if(dioI != dioS)
+        renderDioBox();
+        
+        }
+        
+        
         if (event.x !== undefined && event.y !== undefined)
         {
            
@@ -30,8 +41,8 @@ var oldcanvas = {
           y = event.clientY + document.body.scrollTop +
               document.documentElement.scrollTop;
         }
-        x -= offsetleft;
-        y -= offsettop;
+        //x -= offsetleft;
+        //y -= offsettop;
         console.log("x: " + x + "  y: " + y);
         checkButtons(x,y);
         if(y<oldcanvas.height && x<oldcanvas.width && pause === false && start === true){

@@ -151,6 +151,8 @@ var monster4Image = new Image();
 monster4Image.src = "images/boss1.jpg"; 
 var monster5Image = new Image();
 monster5Image.src = "images/boss2.jpg"; 
+var monster6Image = new Image();
+monster6Image.src = "images/skelly.png"; 
 
 mImg = [];
 mImg[0]=monsterImage;
@@ -158,6 +160,7 @@ mImg[1]=monster2Image;
 mImg[2]=monster3Image;
 mImg[3]=monster4Image;
 mImg[4]=monster5Image;
+mImg[5]=monster6Image;
 
 var inn = new Image();
 inn.src = "images/inn1.png";
@@ -222,8 +225,12 @@ var onscreenMonster = [];
 var osShopList = []; 
 var osTavernList = [];
 var bossesKilled = []; 
+var osNPC = [];
 
 
+var oldMan1Talk = ["Hello Traveller, welcome to this humble village","I'm the mayor of this town, and I could use your help","Messagers from a town to the west of here have claimmed to see a demon","If you could go and slay it that would make us forever grateful.","Go to the Tavern for more info."];
+var oldMan2Talk = ["Howdy Traveller, welcome to this quiet town","I'm the mayor's brother....well I guess I'm mayor now.","My brother was the old mayor but we was killed by a troll in the south.","I'd be in your debt if your went to the south to kill it.","I think there is a picture of it in the tavern."];
+var soldier1Talk = ["I tried to fight the ogre myself...","unfortunately the monster on the way there wore me down.","Maybe I should try to avoid them next time..."];
 House1 = new House (200,123,"Welcome to our village sir, people are on edge from monsters to the east.");
 House2 = new House (200,123,"You should get out of town, Ghosts roam these parts.");
 inn1 = new Inn (320,100);
@@ -235,10 +242,13 @@ chest2 = new Chest (15, "images/chestplate2.PNG",320);
 headgear1 = new Headgear (4,"images/headgear1.png",60);
 assesory1 = new Assesory (0,3,"images/assesory1.png",80);
 assesory2 = new Assesory (0,7,"images/assesory2.png",120);
+oldMan1 = new NPC(750,300,"images/oldMan.png",oldMan1Talk,"Quinn");
+oldMan2 = new NPC(710,250,"images/oldMan.png",oldMan2Talk,"Brad");
+soldier1  = new NPC(300,300,"images/soldier1.png",soldier1Talk,"John");
 hero.hweapon = weapon1;
 hero.hchest = chest1;
-hero.hheadgear = new Headgear (0,"",0);
-hero.hassesory = new Assesory (0,0,"",0);
+hero.hheadgear = new Headgear (0,"images/noImg.png",0);
+hero.hassesory = new Assesory (0,0,"images/noImg.png",0);
 shop1 = new Shop (485,120,weapon2,chest2,headgear1,assesory1);
 shop2 = new Shop (485,120,weapon3,chest2,headgear1,assesory2);
 monster = new Monster(80,100,20,10,9,5,0,0,3);
@@ -256,6 +266,11 @@ ghost2 = new Monster(86,115,35,35,5,0,10,2,8);
 ghost3 = new Monster(98,120,35,35,5,0,10,2,8);
 ghost4 = new Monster(114,112,35,35,5,0,10,2,8);
 ghost5 = new Monster(103,90,35,35,5,0,10,2,8);
+skelly1 = new Monster(60,82,50,40,20,30,30,6,14);
+skelly2 = new Monster(70,76,50,40,20,30,30,6,14);
+skelly3 = new Monster(82,87,50,40,20,30,30,6,14);
+skelly4 = new Monster(91,79,50,40,20,30,30,6,14);
+skelly5 = new Monster(67,73,50,40,20,30,30,6,14);
 //bosses may need to be nerfed.
 ogreBoss1 = new Monster(20,20,100,30,25,20,30,3,150);
 demonBoss1 = new Monster(20,20,70,45,0,20,20,4,100);
@@ -278,6 +293,11 @@ monsterData.push(ghost2);
 monsterData.push(ghost3);
 monsterData.push(ghost4);
 monsterData.push(ghost5);
+monsterData.push(skelly1);
+monsterData.push(skelly2);
+monsterData.push(skelly3);
+monsterData.push(skelly4);
+monsterData.push(skelly5);
 monsterData.push(ogreBoss1);
 monsterData.push(demonBoss1);
 
@@ -342,10 +362,11 @@ var resetSouth = function() {
     despawn(osInnList);
     despawn(osShopList);
     despawn(osTavernList);
+    despawn(osNPC);
     createMonsters();
     spawnMonster(onscreenMonster);
     createHouses();
-    console.log(map[mapCordsX][mapCordsY][7]);
+    
   };
 
 //map array
@@ -356,11 +377,11 @@ for (var i = 0; i < 10; i++) {
 //[monsters,bushes,rocks,water,NA,NA,NA,town]
 //tells update method what to spawn based on your map location
 //TODO: combine lines.
-var mapData00 = [3,12,0,0,0,0,0,0];
+var mapData00 =[3,12,0,0,0,0,0,0];
 var mapData01 = [1,3,0,0,0,0,0,1];
 var mapData02 = [2,5,0,0,0,0,0,0];
 var mapData11 = [3,4,0,0,0,0,0,0];
-var mapData12 = [3,12,0,0,0,0,0,0];
+var mapData12 =[3,12,0,0,0,0,0,0];
 var mapData10 = [2,2,0,0,0,0,0,0];
 var mapData20 = [0,2,0,0,0,0,0,0];
 var mapData21 = [4,0,0,0,0,0,0,0];
@@ -368,19 +389,19 @@ var mapData22 = [3,0,0,0,0,0,0,0];
 var mapData30 = [4,2,0,0,0,0,0,0];
 var mapData03 = [2,5,0,0,0,0,0,0];
 var mapData31 = [1,0,0,0,0,0,0,2];
-var mapData13 = [4,13,0,0,0,0,0,0];
+var mapData13 =[4,13,0,0,0,0,0,0];
 var mapData32 = [4,1,0,0,0,0,0,0];
-var mapData23 = [13,4,0,0,0,0,0,0];
+var mapData23 =[13,4,0,0,0,0,0,0];
 var mapData33 = [3,1,0,0,0,0,0,0];
-var mapData40 = [3,11,0,0,0,0,0,0];
+var mapData40 =[3,11,0,0,0,0,0,0];
 var mapData04 = [1,7,0,0,0,0,0,0];// startpoint
 var mapData41 = [2,1,0,0,0,0,0,0];
-var mapData14 = [102,8,0,0,0,0,0,0];
+var mapData14=[102,8,0,0,0,0,0,0];
 var mapData42 = [4,5,0,0,0,0,0,0];
 var mapData24 = [5,9,0,0,0,0,0,0];
 var mapData43 = [5,5,0,0,0,0,0,0];
-var mapData34 = [4,14,0,0,0,0,0,0];
-var mapData44= [101,7,0,0,0,0,0,0];
+var mapData34 =[4,14,0,0,0,0,0,0];
+var mapData44=[101,7,0,0,0,0,0,0];
 map[0][0] = mapData00;
 map[0][1] = mapData01;
 map[0][2] = mapData02;
@@ -419,15 +440,12 @@ var main = function() {
     update(delta / 2000);
    if(pause===false){
     render();
-
   if(start === true){
 
       if (stats === false )
       render2();
       
           renderBar();
-          
-          
           
     then = now;
 }

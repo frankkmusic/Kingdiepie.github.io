@@ -67,11 +67,25 @@ var createMonsters = function() {
       onscreenMonster.push(monsterData[13]);
       onscreenMonster.push(monsterData[14]);
     }
-    if(map[mapCordsX][mapCordsY][0] === 101){
+    if(map[mapCordsX][mapCordsY][0] === 6){
+      onscreenMonster.push(monsterData[10]);
+      onscreenMonster.push(monsterData[11]);
+      onscreenMonster.push(monsterData[12]);
+      onscreenMonster.push(monsterData[13]);
       onscreenMonster.push(monsterData[15]);
     }
-    if(map[mapCordsX][mapCordsY][0] === 102){
+    if(map[mapCordsX][mapCordsY][0] === 5){
+      onscreenMonster.push(monsterData[15]);
       onscreenMonster.push(monsterData[16]);
+      onscreenMonster.push(monsterData[17]);
+      onscreenMonster.push(monsterData[18]);
+      onscreenMonster.push(monsterData[19]);
+    }
+    if(map[mapCordsX][mapCordsY][0] === 101){
+      onscreenMonster.push(monsterData[20]);
+    }
+    if(map[mapCordsX][mapCordsY][0] === 102){
+      onscreenMonster.push(monsterData[21]);
     }
 };
 
@@ -85,6 +99,7 @@ var createHouses = function() {
       osInnList.push(inn1);
       osShopList.push(shop1);
       osTavernList.push(tavern1);
+      osNPC.push(oldMan1);
       
     }
     if(map[mapCordsX][mapCordsY][7] === 2){
@@ -92,6 +107,7 @@ var createHouses = function() {
       osInnList.push(inn1);
       osShopList.push(shop2);
       osTavernList.push(tavern2);
+	  osNPC.push(oldMan2);
     }
    
 };
@@ -134,13 +150,10 @@ var playIt = function() {
   ThreeB.os = false;
   FourB.os = false;
   if (stats===true){
-    buffer1 = 20;
+    
     
   }
-  if (maps === true){
-    buffer2 = 75;
-    buffer3 = 55;
-  }
+  
   stats = false;
   
 };
@@ -239,8 +252,7 @@ var battle = function(n) {
     maps=true;
     //playIt();
     ctx.font = "24px New Rocker";
-    buffer3=55;
-    buffer2=75;
+ 
     renderBar();
     ctx.font = "24px New Rocker";
     ctx.drawImage(popUp, 128, 90);
@@ -262,7 +274,7 @@ var battle = function(n) {
     dmg=5;
     }
     ctx.fillText("You will take " + dmg + " damage", canvas.width/2, 260);
-   
+   ctx.textAlign="left";
     return dmg;
 };
 
@@ -408,38 +420,41 @@ var innMsg = function(m) {
 };
 
 var shopMsg = function(m,itm) {
+  
   ctx.font = "24px New Rocker";
     ctx.drawImage(popUp, 128, 90);
     ctx.textAlign="center"; 
+    //ctx.textBaseline = "top";
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.fillText(m,oldcanvas.width/2,160);
-    ctx.fillStyle = "rgb(192, 192, 192)";
+    ctx.fillStyle = "rgb(192, 192, 192)"; 
     ctx.drawImage(itm[0].img,oldcanvas.width/2-96,200);
-    ctx.fillText(itm[0].price,oldcanvas.width/2-96,220);
-    ctx.fillText(itm[0].atk,oldcanvas.width/2-66,190);
+    ctx.fillText(itm[0].price,oldcanvas.width/2-96,220+24);
+    ctx.fillText(itm[0].atk,oldcanvas.width/2-66,190+24);
     ctx.drawImage(itm[1].img,oldcanvas.width/2-32,200);
-    ctx.fillText(itm[1].price,oldcanvas.width/2-32,220);
-    ctx.fillText(itm[1].def,oldcanvas.width/2-2,190);
+    ctx.fillText(itm[1].price,oldcanvas.width/2-32,220+24);
+    ctx.fillText(itm[1].def,oldcanvas.width/2-2,190+24);
     ctx.drawImage(itm[2].img,oldcanvas.width/2+32,200);
-    ctx.fillText(itm[2].price,oldcanvas.width/2+32,220);
-    ctx.fillText(itm[2].def,oldcanvas.width/2+62,190);
+    ctx.fillText(itm[2].price,oldcanvas.width/2+32,220+24);
+    ctx.fillText(itm[2].def,oldcanvas.width/2+62,190+24);
     ctx.drawImage(itm[3].img,oldcanvas.width/2+96,200);
-    ctx.fillText(itm[3].price,oldcanvas.width/2+96,220);
-    ctx.fillText(itm[3].def,oldcanvas.width/2+126,190);
+    ctx.fillText(itm[3].price,oldcanvas.width/2+96,220+24);
+    ctx.fillText(itm[3].def,oldcanvas.width/2+126,190+24);
     ctx.fillStyle = "rgb(255, 0, 0)";
-    ctx.fillText(itm[0].atk,oldcanvas.width/2-66,190);
+    ctx.fillText(itm[0].atk,oldcanvas.width/2-66,190+24);
     ctx.fillStyle = "rgb(0, 255, 0)";
-    ctx.fillText(itm[1].def,oldcanvas.width/2-2,190);
-    ctx.fillText(itm[2].def,oldcanvas.width/2+62,190);
-    ctx.fillText(itm[3].def,oldcanvas.width/2+126,190);
+    ctx.fillText(itm[1].def,oldcanvas.width/2-2,190+24);
+    ctx.fillText(itm[2].def,oldcanvas.width/2+62,190+24);
+    ctx.fillText(itm[3].def,oldcanvas.width/2+126,190+24);
     ctx.fillStyle = "rgb(250, 250, 250)";
-    ctx.fillText("Press Enter or the Continue button to exit.",oldcanvas.width/2,256);
+    ctx.fillText("Press Enter or the Continue button to exit.",oldcanvas.width/2,256+32);
     OneB.os = true;
     TwoB.os = true;
     ThreeB.os = true;
     FourB.os = true;
     pauseIt();
     shopO = true;
+    ctx.textBaseline = "Alphabetic";
 };
 
 var notEnoughSilver = function(){
@@ -512,5 +527,6 @@ var creditsmenu = function() {
   pauseIt();
 };
 var inventorymenu = function() {
-  console.log("inventory");
+  renderInventory();
+  pauseIt();
 };
